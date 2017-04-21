@@ -1,0 +1,20 @@
+<sd-navbar></sd-navbar>
+<div class="todos">
+  <div>
+    <form (submit)="addTodo($event)" class="formTodoNew">
+      <input [(ngModel)]="newTodo" (keyup.enter)="newTodo=''" class="textfield addInputTodo" name="newTodo">
+      <button type="submit" [disabled]="newTodo===''">Adicionar</button>
+    </form>
+  </div>
+
+  <table>
+    <tr *ngFor="let todo of todos; let i=index">
+      <ng-template [ngIf]="currentUser.username == todo.userTodo || currentUser.username == 'admin'">
+        <td (click)="deleteTodo(i)" class="delete-icon">[X]</td>
+      </ng-template> 
+      <td>{{ todo.newTodo }}</td>
+      <td>{{ todo.userTodo }}</td>
+      <td>{{ todo.dateTodo }}</td>
+    </tr>
+  </table>
+</div>
